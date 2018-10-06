@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using MvcMovie.Models;
+using MySql.Data.EntityFrameworkCore.Extensions;
 
 namespace MvcMovieNetCore
 {
@@ -24,8 +25,10 @@ namespace MvcMovieNetCore
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-             services.AddDbContext<MvcMovieContext>(options =>
-                  options.UseSqlite("Data Source=MvcMovie.db"));
+            services.AddDbContext<MvcMovieContext>(options =>
+                  //options.UseSqlite("Data Source=MvcMovie.db")
+                  options.UseMySQL("server=localhost;database=library3;user=root;password=MySQL;port=3306")
+                  );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
